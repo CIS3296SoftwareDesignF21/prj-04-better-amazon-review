@@ -5,6 +5,9 @@ Often, I find myself more confused whether to a book is good or not from amazon 
 - Keywords and keyword combinations
 - Score bell curve and standard deviation
 
+![image](https://user-images.githubusercontent.com/89652481/139957337-9f3281c5-9382-4069-9dc4-d78ae9dc2d81.png)
+
+
 # Educational Goals
 The project is a very data heavy, and data driven project, data analysis is not worth anything if the data is not organized well and unreliable. Therefore, it will be incredibly important to plan our project according to UML as well as familiarize ourselves with databases and their traversal. Speed will be important we would not want out users waiting more than a few seconds for their results, so we must implement thoughtful program and algorithm design to optimize performance. As mentioned earlier this project is very open ended, so there will be plenty of room for on-the-fly coding in the form of adding additional analysis / features throughout the lifecycle of the project, as well as the potential for future updates with new features.
 
