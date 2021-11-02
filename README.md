@@ -1,5 +1,6 @@
 # Project 
 Components: Django, Python, NLTK library (Python), Pandas library (Python), Amazon API.
+Vision statement: The purpose of this software is to enhance user experience and data extraction as it pertains to Amazon's reviews and ratings - specifically, for trending books, which are the backbone of Amazon's identity and presence. We aim to incorporate sentiment and topic analysis mechanisms to effectively create a stronger filtering and weight-creation mechanism, such that users can have access to data that makes a slew of reviews more comprehensible. 
 
 # How to Run (Django tutorial)
 
