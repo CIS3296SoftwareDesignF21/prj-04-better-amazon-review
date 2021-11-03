@@ -46,7 +46,7 @@ django-admin startproject mysite
 Then, follow the provided tutorial -> https://docs.djangoproject.com/en/3.2/intro/tutorial01/
 
 # Personas
-Ben : Michael is an avid reader who finds immense joy in reading both historical biographies and science fiction novels. Michael doesn't have time to scour the internet or his local library for his newest book, and thus utilizes charts featuring popular novels to find his next purchase.
+Ben : Michael is an avid reader who finds immense joy in reading both historical biographies and science fiction novels. Michael doesn't have time to scour the internet or his local library for his newest book, and thus utilizes charts featuring popular novels to find his next purchase. Michael wishes that he could know more about the people who leave reviews on products; Michael thinks that he would find reviews more useful if they were from people like himself.
 
 Max : Janet is a 43 year old school teacher who has decided to start reading more but does not know where to start. She has looked over Amazon's book section for a new book to read but is overwhelmed with the varying reviews on some of their top rated books. She is busy with her career and children so when she commits to reading a book she wants to make sure its worth her time. She does not want to get halfway through a book and realize she doesn't like it. Janet uses Better Amazon Book reviews to find what people really think about Amazon's top books, and makes an further informed choice as to what her next read will be.  
 
