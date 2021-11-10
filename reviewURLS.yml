@@ -1,0 +1,9 @@
+productPages:
+    css: 'div.card-padding div.a-section div.a-row.a-spacing-medium'
+    xpath: null
+    type: Text
+    children:
+        url:
+            css: a.a-link-emphasis
+            xpath: null
+            type: Link
