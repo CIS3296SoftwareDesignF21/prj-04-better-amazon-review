@@ -5,7 +5,7 @@ Often, I find myself more confused whether to a book is good or not from amazon 
 - Keywords and keyword combinations
 - Score bell curve and standard deviation
 
-## Vision
+# Vision
 
 FOR readers around the world WHO are looking for accurate, trustworthy, reliable reviews for books on Amazon, THE Better Amazon Reviews program is a web tool THAT allows users to effectively search a database of reviews to confidently purchase well-reviewed books.
 
