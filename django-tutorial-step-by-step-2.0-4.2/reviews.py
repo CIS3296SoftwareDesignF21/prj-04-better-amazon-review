@@ -4,6 +4,8 @@ import json
 from time import sleep
 import csv
 from dateutil import parser as dateparser
+from mysite.reviews.models import Review
+
 
 # Create an Extractor by reading from the YAML file
 e = Extractor.from_yaml_file('selectors.yml')
@@ -42,6 +44,7 @@ with open("urls2.txt", 'r') as urllist, open('data2.csv', 'w') as outfile:
     writer.writeheader()
     for url in urllist.readlines():
         data = scrape(url)
+        save_review(data)
         if data:
             for r in data['reviews']:
                 r["product"] = data["product_title"]
@@ -59,3 +62,7 @@ with open("urls2.txt", 'r') as urllist, open('data2.csv', 'w') as outfile:
                 writer.writerow(r)
             # sleep(5)
     
+
+def save_review(data):
+    r = Review(author=data['author'], date=data['date'], title=data['title'],  content=data['content'], url=data['url'], product=data['product_title'], rating=data['rating'])
+    r.save()
