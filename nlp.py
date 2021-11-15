@@ -18,7 +18,6 @@ import array as arr
 
 
 class Library:
-
     books = []
 
     def get_books(self):
@@ -32,7 +31,6 @@ class Library:
 
 
 class Book:
-
     reviews = []
     review_count = 0
 
@@ -147,14 +145,12 @@ class Review:
         self.url = url
 
 
-stop_words = set(stopwords.words("english"))
-lem = WordNetLemmatizer()
-stem = PorterStemmer()
-
-
 class StatTool:
 
     def read_csv(self):
+        stop_words = set(stopwords.words("english"))
+        lem = WordNetLemmatizer()
+        stem = PorterStemmer()
         with open('bookData', encoding='utf-8') as csv_file:
             csv_reader = csv.reader(csv_file, delimiter=',')
             line_count = 0
@@ -194,16 +190,47 @@ class StatTool:
                         lemma_words = []
                         for w in filtered_sent:
                             lemma_words.append(lem.lemmatize(w, "v"))
-                        tagged_data = nltk.pos_tag(tokenized_word)
+                        for word in lemma_words:
+                            word.replace("'", "")
+                        tagged_data = nltk.pos_tag(lemma_words)
                         adjectives = []
                         for index, tuple in enumerate(tagged_data):
                             element_one = tuple[0]
                             element_two = tuple[1]
-                            if element_two == "JJ":
-                                adjectives.append(element_one)
+                            if element_two == 'JJ':
+                                if str(element_one).endswith('ical') or str(element_one).endswith('ic') or \
+                                        str(element_one).endswith('al') or str(element_one).endswith('ive') or \
+                                        str(element_one).endswith('able') or str(element_one).endswith('ful') or \
+                                        str(element_one).endswith('ous'):
+                                    if not str(element_one).startswith("'") and element_one != 'total' and \
+                                            element_one != 'pedestal' and element_one != 'receive' and \
+                                            element_one != 'thankful' and element_one != 'moral' and \
+                                            element_one != 'several' and element_one != 'able' and \
+                                            element_one != 'dive' and element_one != 'lyric' and \
+                                            element_one != 'give' and element_one != 'public' and \
+                                            element_one != 'available' and element_one != 'arrive' and \
+                                            element_one != 'deal' and element_one != 'previous' and \
+                                            element_one != 'final' and element_one != 'table' and \
+                                            element_one != 'conceive' and element_one != 'live' and \
+                                            element_one != 'potential' and element_one != 'perspective' and \
+                                            element_one != 'oral' and element_one != 'narrative' and \
+                                            element_one != 'deceive' and element_one != 'loyal' and \
+                                            element_one != 'positive' and element_one != 'additional' and \
+                                            element_one != 'careful' and element_one != 'initial' and \
+                                            element_one != 'pic' and element_one != 'individual' and \
+                                            element_one != 'physical' and element_one != 'pacific' and \
+                                            element_one != 'literal' and element_one != 'seal' and \
+                                            element_one != 'capable' and element_one != 'actual' and \
+                                            element_one != 'drive' and element_one != 'digital' and \
+                                            element_one != 'various' and element_one != 'negative' and \
+                                            element_one != 'usable' and element_one != 'survive' and \
+                                            element_one != 'doable' and element_one != 'numerous' and \
+                                            element_one != 'material' and element_one != 'alive' and \
+                                            element_one != 'grateful':
+                                        adjectives.append(element_one)
                             fd.update(adjectives)
-                print(entry.get_title(), fd.most_common(20))
-                fd.plot(20, cumulative=False)
+                print(entry.get_title(), fd.most_common(10))
+                fd.plot(10, cumulative=False, title=entry.get_title())
                 plt.show()
 
 
