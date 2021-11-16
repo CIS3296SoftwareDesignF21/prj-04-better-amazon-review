@@ -15,6 +15,7 @@ import matplotlib
 import pandas as pd
 import csv
 import array as arr
+from itertools import chain
 
 
 class Library:
@@ -33,6 +34,8 @@ class Library:
 class Book:
     reviews = []
     review_count = 0
+    top_10_adjectives = []
+    top_10_adjectives_dict = dict()
 
     def __init__(self, author, title):
         self.author = author
@@ -68,6 +71,24 @@ class Book:
 
     def set_review_count(self, review_count):
         self.review_count = review_count
+
+    def get_top_10_adjectives(self):
+        return self.top_10_adjectives
+
+    def set_top_10_adjectives(self, top_10_adjectives):
+        self.top_10_adjectives = top_10_adjectives
+
+    def add_top_10_adjective(self, top_10_adjective):
+        self.top_10_adjectives.append(top_10_adjective)
+
+    def get_top_10_adjectives_dict(self):
+        return self.top_10_adjectives_dict
+
+    def set_top_10_adjectives_dict(self, dict):
+        self.top_10_adjectives_dict = dict
+
+    def add_top_10_adjective_to_dict(self, adjective, count):
+        self.top_10_adjectives_dict.update(adjective, count)
 
 
 class Review:
@@ -147,6 +168,20 @@ class Review:
 
 class StatTool:
 
+    libraries = []
+
+    def get_libraries(self):
+        return self.libraries
+
+    def set_libraries(self, libraries):
+        self.libraries = libraries
+
+    def add_library(self, Library):
+        self.libraries.append(Library)
+
+    def remove_review(self, Library):
+        self.libraries.remove(Library)
+
     def read_csv(self):
         stop_words = set(stopwords.words("english"))
         lem = WordNetLemmatizer()
@@ -157,6 +192,7 @@ class StatTool:
             titles = []
             reviews = []
             library = Library()
+            self.add_library(library)
             for row in csv_reader:
                 if line_count == 0:
                     print(f'Column names are {", ".join(row)}')
@@ -171,6 +207,7 @@ class StatTool:
                         book = Book({row[6]}, {row[8]})
                         titles.append({row[8]})
                         library.add_book(book)
+            output_file = open("bookStats.txt", "w", encoding='utf-8')
             for entry in library.get_books():
                 fd = FreqDist()
                 for review in reviews:
@@ -230,9 +267,33 @@ class StatTool:
                                         adjectives.append(element_one)
                             fd.update(adjectives)
                 print(entry.get_title(), fd.most_common(10))
+                entry.set_top_10_adjectives(fd.most_common(10))
+                output_file.write(str(entry.get_title()) + "\t" + str(entry.get_top_10_adjectives()) + "\n")
+                print(entry.get_top_10_adjectives())
                 fd.plot(10, cumulative=False, title=entry.get_title())
                 plt.show()
+                #  write book, top 10 adjectives, and their respective counts to an output file
+
+    def retrieve_adjective_correlation(self, lookup_adjective):
+        for library in self.get_libraries():
+            book_and_frequency_dict = dict()
+            for book in library.get_books():
+                for index, tuple in enumerate(book.get_top_10_adjectives()):
+                    element_one = tuple[0]
+                    element_two = tuple[1]
+                    if element_one == lookup_adjective:
+                        book_title = str(book.get_title())
+                        book_and_frequency_dict.update({book_title: element_two})
+            print(book_and_frequency_dict)
+            my_list = book_and_frequency_dict.items()
+            my_list = sorted(my_list)
+            x, y = zip(*my_list)
+            plt.title(lookup_adjective)
+            plt.xticks(ticks=range(len(my_list)), rotation=90)
+            plt.bar(x, y)
+            plt.show()
 
 
 stat_tool = StatTool()
 stat_tool.read_csv()
+#  stat_tool.retrieve_adjective_correlation('wonderful')
