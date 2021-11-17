@@ -1,5 +1,7 @@
 # UML Sequence Diagrams
 
+![image](https://user-images.githubusercontent.com/89652481/142258678-c2692be8-d7d7-43d7-809a-bc72cff5f47a.png)
+
 
 # Tasks
 
