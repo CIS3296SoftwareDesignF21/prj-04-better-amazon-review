@@ -35,3 +35,4 @@
 
 - Refine homepage design.
 
+- Reorganize Trello board such that lists represent weekly tasks.
