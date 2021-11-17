@@ -2,6 +2,8 @@
 
 ![image](https://user-images.githubusercontent.com/89652481/142258678-c2692be8-d7d7-43d7-809a-bc72cff5f47a.png)
 
+![scraper drawio](https://user-images.githubusercontent.com/89864304/142261897-2d59afe1-740f-48fb-9bc7-1a55ca4dc297.png)
+
 
 # Tasks
 
