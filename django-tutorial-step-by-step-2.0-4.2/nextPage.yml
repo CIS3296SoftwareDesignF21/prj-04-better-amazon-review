@@ -1,0 +1,4 @@
+nextPage:
+    css: 'li.a-last a'
+    xpath: null
+    type: Link

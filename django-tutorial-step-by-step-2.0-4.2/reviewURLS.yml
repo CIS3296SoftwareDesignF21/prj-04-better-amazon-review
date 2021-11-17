@@ -7,3 +7,12 @@ productPages:
             css: a.a-link-emphasis
             xpath: null
             type: Link
+isbn:
+    css: li:nth-of-type(4) span.a-list-item span:nth-of-type(2)
+    xpath: null
+    type: Text
+isbn2:
+    css: li.a-carousel-card:nth-of-type(6) div.a-section.a-spacing-none span
+    xpath: null
+    type: Text
+

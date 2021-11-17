@@ -1,0 +1,4 @@
+permaLink:
+    css: 'div.a-row > a.a-color-secondary'
+    xpath: null
+    type: Link
