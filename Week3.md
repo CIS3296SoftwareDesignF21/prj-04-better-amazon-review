@@ -1,9 +1,9 @@
-## UML Sequence Diagrams
+# UML Sequence Diagrams
 
 
-## Tasks
+# Tasks
 
-# Ben
+## Ben
 
 - Build model; populate objects with CSV data from the scraper.
 
@@ -17,17 +17,17 @@
 
 - Create third release (0.3.0-alpha) for project.
 
-# Max
+## Max
 
 - Complete web-scraping code.
 
 - Create a UML sequence diagram, displaying the process of web-scraping.
 
-# Marshall
+## Marshall
 
 - Use output file (CSV) of web-scraping code to populate database.
 
-# Juan
+## Juan
 
 - Refine homepage design.
 
