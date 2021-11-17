@@ -34,6 +34,7 @@ class Book:
         else:
             print("ISBN: None\n")
 
+
 def scrape(url, configFile):
     e = Extractor.from_yaml_file(configFile)
     headers = {
@@ -51,7 +52,7 @@ def scrape(url, configFile):
     }
 
     r = requests.get(url, headers=headers)
-    # print("Downloading %s" % url)
+
     # Simple check to check if page was blocked (Usually 503)
     if r.status_code > 500:
         if "To discuss automated access to Amazon data please contact" in r.text:
@@ -62,7 +63,6 @@ def scrape(url, configFile):
     # Pass the HTML of the page and create
 
     return e.extract(r.text)
-
 
 
 def getPermaLink(url):
@@ -185,4 +185,5 @@ runScrape()
 
 
 #main()
+
 

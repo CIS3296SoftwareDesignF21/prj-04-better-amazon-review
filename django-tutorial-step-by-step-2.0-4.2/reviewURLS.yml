@@ -15,3 +15,4 @@ isbn2:
     css: li.a-carousel-card:nth-of-type(6) div.a-section.a-spacing-none span
     xpath: null
     type: Text
+
