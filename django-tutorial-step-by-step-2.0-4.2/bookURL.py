@@ -9,11 +9,12 @@ from dateutil import parser as dateparser
 
 
 class Book:
-    def __init__(self, title, productPage, reviewPage, isbn, reviewLinks):
+    def __init__(self, title, productPage, reviewPage, isbn, image, reviewLinks):
         self.title = title
         self.productPage = productPage
         self.reviewPage = reviewPage
         self.isbn = isbn
+        self.image = image
         self.reviewLinks = reviewLinks
 
     def toString(self):
@@ -71,17 +72,20 @@ def getPermaLink(url):
 
 
 def cleanPermaLink(url):
-    link = url.split('/')
-    return link[4]
+    if(url is not None):
+        link = url.split('/')
+        return link[4]
+    else:
+        return None
 
 
-def reviewLinks(url):
+def reviewLinks(url,pages):
     links = []
     i = 0
     if(url is None):
         return links
     else:
-        for i in range(9):
+        for i in range(pages):
             if (i == 0):
                 try:
                     data = scrape(url, 'nextPage.yml')
@@ -110,37 +114,42 @@ def scrapeReviews(outFile, bookList):
     csvFile = open(outFile, 'w')
     writer = csv.DictWriter(csvFile,
                             fieldnames=["title", "content", "date", "variant", "images", "verified", "author", "rating",
-                                        "product", "url"], quoting=csv.QUOTE_ALL)
+                                        "product", "url", "ISBN","reviewID"], quoting=csv.QUOTE_ALL)
     writer.writeheader()
     # for key in urlDict:
     for book in bookList:
-        reviePageLinks = bookList[book].reviewLinks()
-        for link in reviewPageLinks:
-            # url = urlDict[key]
-            url = bookList[book].reviewPage()
+        i = 0
+        reviewURLS = book.reviewLinks
+        for x in range(len(reviewURLS)):
+            url = reviewURLS[x]
             data = scrape(url, 'selectors.yml')
-            pprint(data)
             if data:
                 try:
                     for r in data['reviews']:
+                        r["ISBN"] = book.isbn
                         r["product"] = data["product_title"]
                         r['url'] = url
+                        permaLink = getPermaLink("https://www.amazon.com" + r['reviewID'])
+                        r['reviewID'] = cleanPermaLink(permaLink)
+
                         r['verified'] = 'Yes'
                         try:
                             r['rating'] = r['rating'].split(' out of')[0]
                         except AttributeError or TypeError:
-                            r['rating'] = 'NA'
+                            r['rating'] = None
                         try:
                             date_posted = r['date'].split('on ')[-1]
                         except AttributeError or TypeError:
-                            date_posted = 'NA'
+                            date_posted = None
                         if r['images']:
                             r['images'] = "\n".join(r['images'])
                         r['date'] = dateparser.parse(date_posted).strftime('%d %b %Y')
+                        print(cleanPermaLink(permaLink) + " : " + r["product"])
                         writer.writerow(r)
                 except TypeError or AttributeError:
                     print('error:  ' + url)
-
+            else:
+                print("No Data, you may have been throttled")
 
 def main():
     url = "https://www.amazon.com/gp/new-releases/books/1/ref=s9_acsd_onr_hd_bw_b1_clnk/ref=s9_acsd_onr_hd_bw_b1_c2_x_c2cl?pf_rd_m=ATVPDKIKX0DER&pf_rd_s=merchandised-search-11&pf_rd_r=3GDZW2R1F73HA683JN2S&pf_rd_t=101&pf_rd_p=4ffa09bb-694b-53c6-8154-5083807b8fdf&pf_rd_i=1"
@@ -150,12 +159,6 @@ def main():
     if data:
         i = 0
         for books in data['books']:
-            '''
-            if i == 2:
-                for i in range(len(bookList)):
-                    bookList[i].toString()
-                break
-            '''
             title = books['title']
             url = "https://www.amazon.com" + books['url']
             reviewData = scrape(str(url), 'reviewURLS.yml')
@@ -169,21 +172,40 @@ def main():
                     isbn = reviewData['isbn2']
                 except TypeError:
                     isbn = None
+                try:
+                    image = reviewData['imageLink']
+                except TyperError:
+                    image = None
 
-            book = Book(title, url, reviewURL, isbn, reviewLinks(reviewURL))
+
+            book = Book(title, url, reviewURL, isbn, image, reviewLinks(reviewURL,9))
             if(reviewURL is not None and isbn is not None):
                 book.toString()
                 bookList.append(book)
+    else:
+        print("No Data, you may have been throttled")
+    scrapeReviews("bookData4.csv", bookList)
 
 
             #i = i + 1
-def runScrape(url):
-    outfile = 'bookData.csv'
-    scrapeReviews(outfile, urlDict)
+def runScrape():
+    outfile = 'bookData2.csv'
+    reviewURL = 'https://www.amazon.com/Will-Mark-Manson-ebook/product-reviews/B096LPZXCH/ref=cm_cr_dp_d_show_all_btm?ie=UTF8&reviewerType=all_reviews'
+    book = Book('Will','https://www.amazon.com/Will-Mark-Manson-ebook/dp/B096LPZXCH/ref=sr_1_1?keywords=will&qid=1637178076&sr=8-1', reviewURL,
+                '1529124158',None,reviewLinks(reviewURL,9))
+    bookList = []
+    bookList.append(book)
+    scrapeReviews(outfile, bookList)
+def scrapeLink():
+    url = 'https://www.amazon.com/Big-Shot-Diary-Wimpy-Book/product-reviews/1419749153/ref=cm_cr_dp_d_show_all_btm?ie=UTF8&reviewerType=all_reviews'
+    data = scrape(url, 'selectors.yml')
+    pprint(data)
 
-runScrape()
-
-
-#main()
-
+def scrapeImage():
+    url = 'https://www.amazon.com/Big-Shot-Diary-Wimpy-Book/dp/1419749153/ref=zg_bs_books_4?_encoding=UTF8&psc=1&refRID=XW3RVD8HR1YNWWNVFM3P'
+    reviewData = scrape(url, 'reviewURLS.yml')
+    pprint(reviewData['imageLink'])
+#runScrape()
+main()
+#scrapeImage()
 
