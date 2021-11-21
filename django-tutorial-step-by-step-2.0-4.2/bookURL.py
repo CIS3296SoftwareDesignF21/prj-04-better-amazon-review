@@ -184,7 +184,7 @@ def main():
                 bookList.append(book)
     else:
         print("No Data, you may have been throttled")
-    scrapeReviews("bookData3.csv", bookList)
+    scrapeReviews("bookData4.csv", bookList)
 
 
             #i = i + 1
