@@ -148,7 +148,8 @@ def scrapeReviews(outFile, bookList):
                         writer.writerow(r)
                 except TypeError or AttributeError:
                     print('error:  ' + url)
-
+            else:
+                print("No Data, you may have been throttled")
 
 def main():
     url = "https://www.amazon.com/gp/new-releases/books/1/ref=s9_acsd_onr_hd_bw_b1_clnk/ref=s9_acsd_onr_hd_bw_b1_c2_x_c2cl?pf_rd_m=ATVPDKIKX0DER&pf_rd_s=merchandised-search-11&pf_rd_r=3GDZW2R1F73HA683JN2S&pf_rd_t=101&pf_rd_p=4ffa09bb-694b-53c6-8154-5083807b8fdf&pf_rd_i=1"
@@ -179,11 +180,11 @@ def main():
 
             book = Book(title, url, reviewURL, isbn, image, reviewLinks(reviewURL,9))
             if(reviewURL is not None and isbn is not None):
-                #book.toString()
+                book.toString()
                 bookList.append(book)
-    for book in bookList:
-        book.toString()
-    #scrapeReviews("bookData3.csv", bookList)
+    else:
+        print("No Data, you may have been throttled")
+    scrapeReviews("bookData3.csv", bookList)
 
 
             #i = i + 1
