@@ -43,9 +43,11 @@ class Book:
     top_10_adjectives = []
     top_10_adjectives_dict = dict()
 
-    def __init__(self, author, title):
+    def __init__(self, author, title, isbn, review_id):
         self.author = author
         self.title = title
+        self.isbn = isbn
+        self.review_id = review_id
 
     def get_author(self):
         return self.author
@@ -99,7 +101,7 @@ class Book:
 
 class Review:
 
-    def __init__(self, title, content, date, variant, images, verified, author, rating, product, url):
+    def __init__(self, title, content, date, variant, images, verified, author, rating, product, url, isbn, review_id):
         self.title = title
         self.content = content
         self.date = date
@@ -110,6 +112,8 @@ class Review:
         self.rating = rating
         self.product = product
         self.url = url
+        self.isbn = isbn
+        self.review_id = review_id
 
     def get_title(self):
         return self.title
@@ -171,6 +175,18 @@ class Review:
     def set_url(self, url):
         self.url = url
 
+    def get_isbn(self):
+        return self.isbn
+
+    def set_isbn(self, isbn):
+        self.isbn = isbn
+
+    def get_review_id(self):
+        return self.review_id
+
+    def set_review_id(self, review_id):
+        self.review_id = review_id
+
 
 class StatTool:
 
@@ -208,12 +224,12 @@ class StatTool:
                     line_count += 1
                 else:
                     new_review = Review({row[0]}, {row[1]}, {row[2]}, {row[3]}, {row[4]}, {row[5]}, {row[6]}, {row[7]},
-                                        {row[8]}, {row[9]})
+                                        {row[8]}, {row[9]}, {row[10]}, {row[11]})
                     reviews.append(new_review)
                     if {row[8]} in titles:
                         continue
                     else:
-                        book = Book({row[6]}, {row[8]})
+                        book = Book({row[6]}, {row[8]}, {row[10]}, {row[11]})
                         titles.append({row[8]})
                         library.add_book(book)
             output_file = open("bookStats.txt", "w", encoding='utf-8')
@@ -309,8 +325,9 @@ stat_tool.read_csv()
 lib = stat_tool.get_library_with_index(0)
 book = lib.get_book_with_index(0)
 data = book.get_top_10_adjectives()
+book_title = str(book.get_title()).lstrip("{").rstrip("}")
 
 
 @app.route("/")
 def home_page_for_book():
-    return render_template('example_book.html', data=data)
+    return render_template('example_book.html', data=data, data1=book_title)
