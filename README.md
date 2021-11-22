@@ -4,13 +4,17 @@ Both avid and amateur readers, whom utilize Amazon's bountiful list of purchasea
 
 # Project Description - Useful Definitions & Links
 
-> Natural Language Toolkit: The Natural Language Toolkit, or more commonly NLTK, is a suite of libraries and programs for symbolic and statistical natural language processing for English written in the Python programming language. https://www.nltk.org/
+## Natural Language Toolkit
+> The Natural Language Toolkit, or more commonly NLTK, is a suite of libraries and programs for symbolic and statistical natural language processing for English written in the Python programming language. https://www.nltk.org/
 
-> Stemming: In linguistic morphology and information retrieval, stemming is the process of reducing inflected words to their word stem, base or root form—generally a written word form (e.g., 'change', 'changing', and 'changes' are reduced to 'chang').
+## Stemming
+> In linguistic morphology and information retrieval, stemming is the process of reducing inflected words to their word stem, base or root form—generally a written word form (e.g., 'change', 'changing', and 'changes' are reduced to 'chang').
 
-> Lemmatisation: In linguistics, lemmatisation is the process of grouping together the inflected forms of a word so they can be analysed as a single item, identified by the word's lemma, or dictionary form (e.g., 'change', 'changing', and 'changes' are reduced to 'change').
+## Lemmatisation
+> In linguistics, lemmatisation is the process of grouping together the inflected forms of a word so they can be analysed as a single item, identified by the word's lemma, or dictionary form (e.g., 'change', 'changing', and 'changes' are reduced to 'change').
 
-> Part-of-speech: In traditional grammar, a part of speech or part-of-speech is a category of words that have similar grammatical properties.
+## Part-Of-Speech
+> In traditional grammar, a part of speech or part-of-speech is a category of words that have similar grammatical properties.
 
 # Build Instructions
 
