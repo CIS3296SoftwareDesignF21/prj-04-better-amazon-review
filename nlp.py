@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 
+from flask import Flask, render_template, request
 from operator import itemgetter
 import nltk
 from nltk.tokenize import sent_tokenize, word_tokenize
@@ -17,12 +18,17 @@ import csv
 import array as arr
 from itertools import chain
 
+app = Flask(__name__)
+
 
 class Library:
     books = []
 
     def get_books(self):
         return self.books
+
+    def get_book_with_index(self, index):
+        return self.books[index]
 
     def set_books(self, books):
         self.books = books
@@ -173,6 +179,9 @@ class StatTool:
     def get_libraries(self):
         return self.libraries
 
+    def get_library_with_index(self, index):
+        return self.libraries[index]
+
     def set_libraries(self, libraries):
         self.libraries = libraries
 
@@ -270,8 +279,8 @@ class StatTool:
                 entry.set_top_10_adjectives(fd.most_common(10))
                 output_file.write(str(entry.get_title()) + "\t" + str(entry.get_top_10_adjectives()) + "\n")
                 print(entry.get_top_10_adjectives())
-                fd.plot(10, cumulative=False, title=entry.get_title())
-                plt.show()
+                #  fd.plot(10, cumulative=False, title=entry.get_title())
+                #  plt.show()
                 #  write book, top 10 adjectives, and their respective counts to an output file
 
     def retrieve_adjective_correlation(self, lookup_adjective):
@@ -291,9 +300,17 @@ class StatTool:
             plt.title(lookup_adjective)
             plt.xticks(ticks=range(len(my_list)), rotation=90)
             plt.bar(x, y)
-            plt.show()
+            #  plt.show()
 
 
 stat_tool = StatTool()
 stat_tool.read_csv()
 #  stat_tool.retrieve_adjective_correlation('wonderful')
+lib = stat_tool.get_library_with_index(0)
+book = lib.get_book_with_index(0)
+data = book.get_top_10_adjectives()
+
+
+@app.route("/")
+def home_page_for_book():
+    return render_template('example_book.html', data=data)
