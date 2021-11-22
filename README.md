@@ -13,7 +13,7 @@ Both avid and amateur readers, whom utilize Amazon's bountiful list of purchasea
 #### Lemmatisation
 > In linguistics, lemmatisation is the process of grouping together the inflected forms of a word so they can be analysed as a single item, identified by the word's lemma, or dictionary form (e.g., 'change', 'changing', and 'changes' are reduced to 'change').
 
-#### Part-Of-Speech
+#### Part-of-Speech
 > In traditional grammar, a part of speech or part-of-speech is a category of words that have similar grammatical properties.
 
 # Build Instructions
