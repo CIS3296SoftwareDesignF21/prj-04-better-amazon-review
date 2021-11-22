@@ -30,6 +30,11 @@ class Library:
     def get_book_with_index(self, index):
         return self.books[index]
 
+    def get_book_with_title(self, title):
+        for b in self.get_books():
+            if str(b.get_title()).lstrip("{").rstrip("}") == title:
+                return b
+
     def set_books(self, books):
         self.books = books
 
@@ -323,11 +328,14 @@ stat_tool = StatTool()
 stat_tool.read_csv()
 #  stat_tool.retrieve_adjective_correlation('wonderful')
 lib = stat_tool.get_library_with_index(0)
-book = lib.get_book_with_index(0)
-data = book.get_top_10_adjectives()
-book_title = str(book.get_title()).lstrip("{").rstrip("}")
+#  book = lib.get_book_with_index(0)
+#  data = book.get_top_10_adjectives()
+#  book_title = str(book.get_title()).lstrip("{").rstrip("}")
 
 
-@app.route("/")
-def home_page_for_book():
-    return render_template('example_book.html', data=data, data1=book_title)
+@app.route("/book/<title>")
+def home_page_for_book(title):
+    book = lib.get_book_with_title(title)
+    data = book.get_top_10_adjectives()
+    book_title = str(book.get_title()).lstrip("{").rstrip("}")
+    return render_template('example_book.html', data=data, data1=book_title, title=title)
