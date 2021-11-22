@@ -2,19 +2,19 @@
 
 # Create virtual environment (prior to pulling repo)
 
-> mkdir myproject
-> cd myproject
-> py -3 -m venv venv
-> venv\Scripts\activate
-> cd venv
+- mkdir myproject
+- cd myproject
+- py -3 -m venv venv
+- venv\Scripts\activate
+- cd venv
 
 # Install dependencies
 
-> pip install flask
-> pip install nltk
-> pip install matplotlib
+- pip install flask
+- pip install nltk
+- pip install matplotlib
 
-# Note: Pull the repo such that the files and folders shown in it are existing within venv. You may need to delete all of the current files and folders in venv prior to pulling the repo. 
+> Note: Pull the repo such that the files and folders shown in it are existing within venv. You may need to delete all of the current files and folders in venv prior to pulling the repo. 
 
 ## README.md Log
 
