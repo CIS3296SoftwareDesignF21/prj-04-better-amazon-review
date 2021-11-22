@@ -16,6 +16,13 @@
 
 > Note: Pull the repo such that the files and folders shown in it are existing within venv. You may need to delete all of the current files and folders in venv prior to pulling the repo. 
 
+## Running the project (through Windows command-line)
+
+- set FLASK_APP=nlp
+- flask run
+
+> Note: You will need to open your browser and enter the address displayed in the command-line.
+
 # README.md Log
 
 ## Week 1 - README.md
