@@ -43,7 +43,10 @@ Both avid and amateur readers, whom utilize Amazon's bountiful list of purchasea
 
 
 
-#### README.md Log
+
+
+
+### README.md Log
 
 ##### Week 1 - README.md
 
