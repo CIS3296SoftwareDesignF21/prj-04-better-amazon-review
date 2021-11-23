@@ -43,9 +43,9 @@ Both avid and amateur readers, whom utilize Amazon's bountiful list of purchasea
 
 
 
-##### README.md Log
+###### README.md Log
 
-###### Week 1 - README.md
+##### Week 1 - README.md
 
 https://github.com/CIS3296SoftwareDesignF21/prj-04-better-amazon-review/blob/b27cb107336dafd3bb011018c8cc75028460aa4a/README.md
 
