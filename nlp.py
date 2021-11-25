@@ -333,9 +333,18 @@ lib = stat_tool.get_library_with_index(0)
 #  book_title = str(book.get_title()).lstrip("{").rstrip("}")
 
 
+@app.route("/home/")
+def home_page():
+    book_list = lib.get_books()
+    book_titles = []
+    for book in book_list:
+        book_titles.append(str(book.get_title())[1:-1])
+    return render_template('home.html', book_titles=book_titles)
+
+
 @app.route("/book/<title>")
 def home_page_for_book(title):
     book = lib.get_book_with_title(title)
     data = book.get_top_10_adjectives()
-    book_title = str(book.get_title()).lstrip("{").rstrip("}")
+    book_title = str(book.get_title())[2:-2]
     return render_template('example_book.html', data=data, data1=book_title, title=title)
