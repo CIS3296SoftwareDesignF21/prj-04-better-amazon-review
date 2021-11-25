@@ -34,9 +34,9 @@ Both avid and amateur readers whom utilize Amazon's bountiful list of purchaseab
 
 > Note: Pull the repo such that the files and folders shown in it are existing within venv. You may need to delete all of the current files and folders in venv prior to pulling the repo. 
 
-## Running the project (through Windows command-line)
+## Running the project (through command-line)
 
-- set FLASK_APP=nlp
+- set FLASK_APP=nlp (Windows) OR export FLASK_APP=nlp (Linux)
 - flask run
 
 > Note: You will need to open your browser and enter the address displayed in the command-line.
