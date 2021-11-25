@@ -1,0 +1,45 @@
+#header {
+        background-color:#f0a30a;
+        padding:1px;
+        text-align: center;
+        font-size:45px;
+        color:black;
+}
+
+.box {
+  border-radius: 25px;
+  background: #bac8d3;
+  padding: 20px; 
+  width: 200px;
+  height: 300px;
+  border: 2px solid #6e8698;
+}
+
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #f0a30a;
+  font-size:20px;
+  border-style:solid;
+  border-width:1px 0px 0px 0px;
+}
+
+li {
+  float: right;
+}
+
+li a {
+  display: block;
+  color: black;
+  text-align: center;
+  padding: 14px 14px;
+  text-decoration: none;
+}
+
+li a:hover {
+  background-color: #111;
+}
+
