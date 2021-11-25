@@ -1,3 +1,5 @@
+import time
+
 from selectorlib import Extractor
 import requests
 from pprint import pprint
@@ -81,7 +83,6 @@ def cleanPermaLink(url):
 
 def reviewLinks(url,pages):
     links = []
-    i = 0
     if(url is None):
         return links
     else:
@@ -89,6 +90,7 @@ def reviewLinks(url,pages):
             if (i == 0):
                 try:
                     data = scrape(url, 'nextPage.yml')
+                    pprint(data)
                     if (data['nextPage'] is not None):
                         nextPage = "https://www.amazon.com" + data['nextPage']
                     else:
@@ -105,7 +107,7 @@ def reviewLinks(url,pages):
                 except AttributeError or TypeError:
                     return links
             links.append(nextPage)
-
+    #pprint(links)
     return links
 
 
@@ -118,6 +120,7 @@ def scrapeReviews(outFile, bookList):
     writer.writeheader()
     # for key in urlDict:
     for book in bookList:
+        pprint(book.title + " : " + str(len(book.reviewLinks)))
         i = 0
         reviewURLS = book.reviewLinks
         for x in range(len(reviewURLS)):
@@ -150,6 +153,7 @@ def scrapeReviews(outFile, bookList):
                     print('error:  ' + url)
             else:
                 print("No Data, you may have been throttled")
+    sleep(240)
 
 def main():
     url = "https://www.amazon.com/gp/new-releases/books/1/ref=s9_acsd_onr_hd_bw_b1_clnk/ref=s9_acsd_onr_hd_bw_b1_c2_x_c2cl?pf_rd_m=ATVPDKIKX0DER&pf_rd_s=merchandised-search-11&pf_rd_r=3GDZW2R1F73HA683JN2S&pf_rd_t=101&pf_rd_p=4ffa09bb-694b-53c6-8154-5083807b8fdf&pf_rd_i=1"
@@ -163,28 +167,35 @@ def main():
             url = "https://www.amazon.com" + books['url']
             reviewData = scrape(str(url), 'reviewURLS.yml')
             if reviewData:
+                pprint(reviewData['allReviews'])
                 try:
-                    reviewURL = "https://www.amazon.com" + reviewData['productPages']['url']
+                    reviewURL = "https://www.amazon.com" + reviewData['allReviews']
                 except TypeError:
+                    pprint("error : " + url)
                     reviewURL = None
                 try:
                     isbn = reviewData['isbn']
-                    isbn = reviewData['isbn2']
                 except TypeError:
+                    pprint("error : " + url)
                     isbn = None
                 try:
                     image = reviewData['imageLink']
                 except TyperError:
                     image = None
+            else:
+                print("No review Data, you may have been throttled")
 
 
-            book = Book(title, url, reviewURL, isbn, image, reviewLinks(reviewURL,9))
+            book = Book(title, url, reviewURL, isbn, image, None)
             if(reviewURL is not None and isbn is not None):
+                book.reviewLinks = reviewLinks(reviewURL,9)
                 book.toString()
                 bookList.append(book)
     else:
         print("No Data, you may have been throttled")
-    scrapeReviews("bookData4.csv", bookList)
+    for book in bookList:
+        print(book.title)
+    scrapeReviews("bookData5.csv", bookList)
 
 
             #i = i + 1
@@ -200,12 +211,36 @@ def scrapeLink():
     url = 'https://www.amazon.com/Big-Shot-Diary-Wimpy-Book/product-reviews/1419749153/ref=cm_cr_dp_d_show_all_btm?ie=UTF8&reviewerType=all_reviews'
     data = scrape(url, 'selectors.yml')
     pprint(data)
+def scrapeReviewLinksMain():
+    url2 = 'https://www.amazon.com/Will-Smith/product-reviews/1984877925/ref=cm_cr_dp_d_show_all_btm?ie=UTF8&reviewerType=all_reviews'
+    url = "https://www.amazon.com/Glitter-Every-Day-Quotes-Women/product-reviews/125083239X/ref=cm_cr_dp_d_show_all_btm?ie=UTF8&reviewerType=all_reviews"
+    reviewLinks(url2,9)
 
 def scrapeImage():
-    url = 'https://www.amazon.com/Big-Shot-Diary-Wimpy-Book/dp/1419749153/ref=zg_bs_books_4?_encoding=UTF8&psc=1&refRID=XW3RVD8HR1YNWWNVFM3P'
-    reviewData = scrape(url, 'reviewURLS.yml')
-    pprint(reviewData['imageLink'])
+    url = "https://www.amazon.com/gp/new-releases/books/1/ref=s9_acsd_onr_hd_bw_b1_clnk/ref=s9_acsd_onr_hd_bw_b1_c2_x_c2cl?pf_rd_m=ATVPDKIKX0DER&pf_rd_s=merchandised-search-11&pf_rd_r=3GDZW2R1F73HA683JN2S&pf_rd_t=101&pf_rd_p=4ffa09bb-694b-53c6-8154-5083807b8fdf&pf_rd_i=1"
+    data = scrape(url, 'bookURL.yml')
+    imageDict = {}
+    if data:
+        for books in data['books']:
+            bookTitle = books['title']
+            imageDict[bookTitle] = bookTitle.replace(" ","")
+            url = "https://www.amazon.com" + books['url']
+            reviewData = scrape(str(url), 'reviewURLS.yml')
+            if reviewData:
+                try:
+                    imageDict[bookTitle] = reviewData['imageLink']
+                except TyperError:
+                    image = None
+            else:
+                print("No review Data, you may have been throttled")
+
+
+def allReviewTest():
+    url = 'https://www.amazon.com/Welcome-Dunder-Mifflin-Ultimate-History/dp/0063082195/ref=zg_bsnr_1_2/146-3000639-7126729?_encoding=UTF8&psc=1&refRID=NH9QF7ET9RJK1H97P5V8  '
+    data = scrape(url, 'reviewURLS.yml')
+    pprint(data['allReviews'])
 #runScrape()
 main()
+#allReviewTest()
 #scrapeImage()
-
+#scrapeReviewLinksMain()

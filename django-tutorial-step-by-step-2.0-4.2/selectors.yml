@@ -37,9 +37,6 @@ reviews:
             css: 'a.a-size-base.review-title'
             type: Link
 
-
-
-
 next_page:
     css: 'li.a-last a'
     type: Link
