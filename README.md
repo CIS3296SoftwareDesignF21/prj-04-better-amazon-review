@@ -6,7 +6,7 @@ Both avid and amateur readers whom utilize Amazon's bountiful list of purchaseab
 
 #### Unified Modeling Language (UML) Class Diagram:
 
-https://github.com/CIS3296SoftwareDesignF21/prj-04-better-amazon-review/blob/main/UML_Class_Diagram_nlp.py.jpg
+![image](https://github.com/CIS3296SoftwareDesignF21/prj-04-better-amazon-review/blob/main/UML_Class_Diagram_nlp.py.jpg)
 
 # Project Description - Definitions & Links
 
