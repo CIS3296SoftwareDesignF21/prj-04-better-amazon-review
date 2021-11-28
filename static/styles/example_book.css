@@ -3,10 +3,72 @@ html, body {
   width: 100vw;
   margin: 0;
   padding: 0;
-  display: flex;
   align-items: center;
   justify-content: center;
 }
+
+#header {
+        background-color:#f0a30a;
+        padding:1px;
+        text-align: center;
+        font-size:45px;
+        color:black;
+}
+
+.box {
+  border-radius: 25px;
+  background: #bac8d3;
+  padding: 20px;
+  width: 500px;
+  height: 500px;
+  border: 2px solid #6e8698;
+  margin:25px;
+  float:right;
+  text-align:center;
+}
+
+.ul-nav {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #f0a30a;
+  font-size:20px;
+  border-style:solid;
+  border-width:1px 0px 0px 0px;
+}
+
+.container1 {
+	display:flex;
+}
+
+.desc {
+float:left;
+  font-family: Arial, Helvetica, sans-serif;
+  margin:200px;
+  padding: 15px;
+  background-color:  #bac8d3;
+  box-shadow: 10px 10px;
+  line-height:1.8;
+}
+  
+li {
+
+  float: left;
+}
+
+li a {
+  display: block;
+  color: black;
+  text-align: center;
+  padding: 14px 14px;
+  text-decoration: none;
+}
+
+li a:hover {
+  background-color: #111;
+}
+
 
 ul.cloud {
   list-style: none;

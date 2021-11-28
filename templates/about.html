@@ -13,21 +13,5 @@
 <div class="ul-nav">
   <li><a class="active" href="/about">About</a></li>
   <li><a href="/home">Home</a></li>
-</div>
-<!--
-<ul class="cloud" role="navigation" aria-label="Webdev tag cloud">
-  {% for item in book_titles %}
-    <li><a data-weight="3" href="/book/{{item}}">{{item}}</a></li>
-  {% endfor %}
-</ul> -->
-
-<ul class="grid-container">
-{% for item in book_titles %}
-
-	<div class="box">
-		<img src="/static/media/covers/{{item}}.jpg">
-		<a class="name" href="/book/{{item}}">{{item}}</a></div>
-{% endfor %}
-</ul>
 </body>
 </html>

@@ -1,23 +1,41 @@
-<<<<<<< HEAD
+body {
+
+  margin: 0;
+}
+
+
+
 #header {
         background-color:#f0a30a;
-        padding:1px;
         text-align: center;
         font-size:45px;
         color:black;
+	padding:1px;
 }
+
 
 .box {
   border-radius: 25px;
   background: #bac8d3;
   padding: 20px; 
   width: 200px;
-  height: 300px;
+  height: 320px;
   border: 2px solid #6e8698;
+  margin:25px;
+  vertical-align:top;
+  text-align:center;
+  display:inline-block;
 }
 
+.grid-container {
+	display: grid;
+	grid-template-columns: auto auto auto auto;
+	grid-gap:10px;
+	padding:10px;
+ 
+}
 
-ul {
+.ul-nav {
   list-style-type: none;
   margin: 0;
   padding: 0;
@@ -28,8 +46,29 @@ ul {
   border-width:1px 0px 0px 0px;
 }
 
+a {
+	margin-top:10px;
+	display:block;
+	color:black;
+	text-decoration:none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+img {
+	display:block;
+	margin-left:auto;
+	margin-right:auto;
+	width: 150px;
+	border-radius:25px;
+	border: 2px solid #6e8698;
+}
+
 li {
-  float: right;
+
+  float: left;
 }
 
 li a {
@@ -44,8 +83,7 @@ li a:hover {
   background-color: #111;
 }
 
-=======
-html, body {
+/*html, body {
   height: 100vh;
   width: 100vw;
   margin: 0;
@@ -54,7 +92,7 @@ html, body {
   align-items: center;
   justify-content: center;
 }
-
+*/
 ul.cloud {
   list-style: none;
   padding-left: 0;
@@ -140,4 +178,3 @@ ul.cloud a:hover::before {
     transition: none !important;
   }
 }
->>>>>>> 78cddf76644381fc82bd195cd9fb9f98e920af44

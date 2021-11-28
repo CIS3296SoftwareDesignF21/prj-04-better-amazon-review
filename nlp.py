@@ -17,6 +17,7 @@ import pandas as pd
 import csv
 import array as arr
 from itertools import chain
+import glob
 
 app = Flask(__name__)
 
@@ -339,8 +340,15 @@ def home_page():
     book_titles = []
     for book in book_list:
         book_titles.append(str(book.get_title())[1:-1])
-    return render_template('home.html', book_titles=book_titles)
+    book_titles.sort()
+    book_covers = glob.glob('static/covers/*.jpg')
+    book_covers.sort()
 
+    return render_template('home.html', book_titles=book_titles, book_covers=book_covers)
+
+@app.route("/about/")
+def about_page():
+    return render_template('about.html')
 
 @app.route("/book/<title>")
 def home_page_for_book(title):

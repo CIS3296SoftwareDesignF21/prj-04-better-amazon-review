@@ -3,14 +3,29 @@
 <head>
     <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/example_book.css') }}">
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Better Amazon Reviews</title>
 </head>
 <body>
+
+<div id="header">
+  <h2>Better Amazon Reviews</h2>
+</div>
+<div class="ul-nav">
+  <li><a class="active" href="/about">About</a></li>
+  <li><a href="/home">Home</a></li>
+</div>
+
+<div class="container1">
+<div class="desc">
 <h3>Reviewers are saying that {{ data1 }} is...</h3>
-<ul class="cloud" role="navigation" aria-label="Webdev tag cloud">
-  {% for item in data %}
-    <li><a data-weight="6" href="/tag/http">{{item[0]}}</a></li>
-  {% endfor %}
+</div>
+<div class="box">
+	<ul class="cloud" role="navigation" aria-label="Webdev tag cloud">
+ 	 {% for item in data %}
+    	<li><a data-weight="6" href="/tag/http">{{item[0]}}</a></li>
+ 	 {% endfor %}
+</div>
+</div>
 </ul>
 </body>
 </html>
