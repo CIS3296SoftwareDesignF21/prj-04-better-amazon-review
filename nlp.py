@@ -344,7 +344,7 @@ def home_page():
     book_covers = glob.glob('static/covers/*.jpg')
     book_covers.sort()
 
-    return render_template('home.html', book_titles=book_titles, book_covers=book_covers)
+    return render_template('home.html', book_titles=book_titles, book_covers=book_covers, len=len(book_titles))
 
 @app.route("/about/")
 def about_page():
