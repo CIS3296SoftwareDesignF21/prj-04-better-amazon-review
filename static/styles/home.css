@@ -13,6 +13,13 @@ body {
 	padding:1px;
 }
 
+#info {
+  font-size: 25px;
+  padding: 2px;
+  margin: 2px;
+  text-align: center;
+}
+
 
 .box {
   border-radius: 25px;
@@ -80,7 +87,7 @@ li a {
 }
 
 li a:hover {
-  background-color: #111;
+  background-color: lightgoldenrodyellow;
 }
 
 /*html, body {

@@ -18,7 +18,7 @@ import csv
 import array as arr
 from itertools import chain
 import glob
-nltk.download()
+#nltk.download()
 
 app = Flask(__name__)
 
