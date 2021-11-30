@@ -22,11 +22,11 @@
 </ul> -->
 
 <ul class="grid-container">
-{% for item in book_titles %}
+{% for i in range(0, len) %}
 
 	<div class="box">
-		<img src="/static/media/covers/{{item}}.jpg">
-		<a class="name" href="/book/{{item}}">{{item}}</a></div>
+		<img src="{{book_covers[i]}}">
+		<a class="name" href="/book/{{book_titles[i]}}">{{book_titles[i]}}</a></div>
 {% endfor %}
 </ul>
 </body>
