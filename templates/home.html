@@ -25,7 +25,7 @@
 {% for i in range(0, len) %}
 
 	<div class="box">
-		<img src="{{book_covers[i]}}">
+		<img src="{{ url_for('static', filename=book_covers[i]) }}">
 		<a class="name" href="/book/{{book_titles[i]}}">{{book_titles[i]}}</a></div>
 {% endfor %}
 </ul>

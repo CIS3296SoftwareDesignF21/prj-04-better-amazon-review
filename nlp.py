@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 from flask import Flask, render_template, request
+import os
 from operator import itemgetter
 import nltk
 from nltk.tokenize import sent_tokenize, word_tokenize
@@ -341,7 +342,7 @@ def home_page():
     for book in book_list:
         book_titles.append(str(book.get_title())[1:-1])
     book_titles.sort()
-    book_covers = glob.glob('static/covers/*.jpg')
+    book_covers = os.listdir('static')
     book_covers.sort()
 
     return render_template('home.html', book_titles=book_titles, book_covers=book_covers, len=len(book_titles))
