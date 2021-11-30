@@ -134,7 +134,6 @@ def scrapeReviews(outFile, bookList):
                         r['url'] = url
                         permaLink = getPermaLink("https://www.amazon.com" + r['reviewID'])
                         r['reviewID'] = cleanPermaLink(permaLink)
-
                         r['verified'] = 'Yes'
                         try:
                             r['rating'] = r['rating'].split(' out of')[0]
@@ -153,7 +152,7 @@ def scrapeReviews(outFile, bookList):
                     print('error:  ' + url)
             else:
                 print("No Data, you may have been throttled")
-    sleep(240)
+        sleep(600)
 
 def main():
     url = "https://www.amazon.com/gp/new-releases/books/1/ref=s9_acsd_onr_hd_bw_b1_clnk/ref=s9_acsd_onr_hd_bw_b1_c2_x_c2cl?pf_rd_m=ATVPDKIKX0DER&pf_rd_s=merchandised-search-11&pf_rd_r=3GDZW2R1F73HA683JN2S&pf_rd_t=101&pf_rd_p=4ffa09bb-694b-53c6-8154-5083807b8fdf&pf_rd_i=1"
@@ -195,10 +194,8 @@ def main():
         print("No Data, you may have been throttled")
     for book in bookList:
         print(book.title)
-    scrapeReviews("bookData5.csv", bookList)
+    scrapeReviews("bookData6.csv", bookList)
 
-
-            #i = i + 1
 def runScrape():
     outfile = 'bookData2.csv'
     reviewURL = 'https://www.amazon.com/Will-Mark-Manson-ebook/product-reviews/B096LPZXCH/ref=cm_cr_dp_d_show_all_btm?ie=UTF8&reviewerType=all_reviews'
