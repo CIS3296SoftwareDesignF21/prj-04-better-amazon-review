@@ -65,3 +65,7 @@ https://github.com/CIS3296SoftwareDesignF21/prj-04-better-amazon-review/blob/e28
 ##### Week 3 - README.md
 
 https://github.com/CIS3296SoftwareDesignF21/prj-04-better-amazon-review/blob/main/Week3.md
+
+##### Week 4 - README.md
+
+https://github.com/CIS3296SoftwareDesignF21/prj-04-better-amazon-review/blob/main/Week4.md
